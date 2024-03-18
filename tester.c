@@ -3,6 +3,7 @@
 #include "util.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "cpu.h"
 
 void test_util_bin() {
 	string sample1 = "10101010";
@@ -36,7 +37,12 @@ void test_util_bin() {
 
 }
 
+void test_cpu() {
+	printf("reset %d\n", cpu_reset());
+	printf("%d\n", bit_16_to_decimal(cpu.regs.status));
+}
+
 int main() {
-	test_util_bin();
+	test_cpu();
 	return 0;
 }

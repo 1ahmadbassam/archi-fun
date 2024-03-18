@@ -12,4 +12,6 @@ struct bit_16 {
 	bit_8 lower;
 };
 
+extern struct bit_16 bit_16_z = {0, 0};
+
 #endif

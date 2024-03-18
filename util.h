@@ -1,4 +1,4 @@
-﻿/* util.h - contains utlities used by sim (not arch) - header file */
+﻿/* 	util.h - contains utlities used by sim (not arch) - header file */
 #ifndef UTIL_HEADER
 #define UTIL_HEADER
 
@@ -38,5 +38,24 @@ extern string bit_8_to_hex(bit_8 b, char* out);
 	if out is null, then creates a new string (using malloc) and returns that
 	else returns out */
 extern string bit_16_to_hex(struct bit_16 b, char* out);
+
+/* TODO: 
+	
+extern bit_8 hexstr_to_bit_8(string str);
+extern struct bit_16 hexstr_to_bit_16(string str);
+
+*/
+
+/*	sets a bit of a specified bit_8 */
+extern void set_bit_8_bit(bit_8* b, uint8_t bit);
+
+/*	clears a bit of a specified bit_8 */
+extern void clear_bit_8_bit(bit_8* b, uint8_t bit);
+
+/*	sets a bit of a specified bit_8 */
+extern void set_bit_16_bit(struct bit_16* b, uint8_t bit);
+
+/*	clears a bit of a specified bit_8 */
+extern void clear_bit_16_bit(struct bit_16* b, uint8_t bit);
 
 #endif

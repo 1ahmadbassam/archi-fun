@@ -187,3 +187,21 @@ string bit_16_to_hex(struct bit_16 b, char* out) {
 		return (string) new_str;
 	}
 }
+
+void set_bit_8_bit(bit_8* b, uint8_t bit) {
+	*b = *b | (1 << bit);
+}
+
+void clear_bit_8_bit(bit_8* b, uint8_t bit) {
+	*b = *b & ~(1 << bit);
+}
+
+void set_bit_16_bit(struct bit_16* b, uint8_t bit) {
+	if (bit > 7) b->upper = b->upper | (1 << (bit - 8));
+	else b->lower = b->lower | (1 << bit);
+}
+
+void clear_bit_16_bit(struct bit_16* b, uint8_t bit) {
+	if (bit > 7) b->upper = b->upper & ~(1 << (bit - 8));
+	else b->lower = b->lower & ~(1 << bit);
+}
