@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Pelles C files
+*.ppj
+*.ppx
+*.tag
+/output
