@@ -118,12 +118,12 @@ struct bit_16 str_to_bit_16(string str) {
 	return result;
 } 
 
-int bit_8_to_decimal(bit_8 b) {
-	return (int) b;
+uint8_t bit_8_to_decimal(bit_8 b) {
+	return (uint8_t) b;
 }
 
-int bit_16_to_decimal(struct bit_16 b) {
-	return (b.upper << 8) + b.lower;
+int bit_16_to_decimal(struct bit_16* b) {
+	return (b->upper << 8) + b->lower;
 }
 
 string bit_8_to_hex(bit_8 b, char* out) {
@@ -153,17 +153,17 @@ string bit_8_to_hex(bit_8 b, char* out) {
 	}
 }
 
-string bit_16_to_hex(struct bit_16 b, char* out) {
+string bit_16_to_hex(struct bit_16* b, char* out) {
 	char 		first, 
 		 		second,
 				third,
 				fourth;	
 	char*		new_str;
 
-	first 		= decimal_to_hex((uint8_t) (b.upper >> 4));
-	second		= decimal_to_hex((uint8_t) (b.upper & 15));
-	third 		= decimal_to_hex((uint8_t) (b.lower >> 4));
-	fourth		= decimal_to_hex((uint8_t) (b.lower & 15));
+	first 		= decimal_to_hex((uint8_t) (b->upper >> 4));
+	second		= decimal_to_hex((uint8_t) (b->upper & 15));
+	third 		= decimal_to_hex((uint8_t) (b->lower >> 4));
+	fourth		= decimal_to_hex((uint8_t) (b->lower & 15));
 
 	if (out != 0) {
 		out[0] = '0';
@@ -186,6 +186,15 @@ string bit_16_to_hex(struct bit_16 b, char* out) {
 		new_str[6] = '\0';
 		return (string) new_str;
 	}
+}
+
+uint8_t bit_8_bit(bit_8 b, uint8_t bit) {
+	return ((b | (1 << bit)) == b) ? 1 : 0; 
+}
+
+uint8_t bit_16_bit(struct bit_16* b, uint8_t bit) {
+	if (bit > 7) return ((b->upper | (1 << bit - 8)) == b->upper) ? 1 : 0; 
+	else return ((b->lower | (1 << bit - 8)) == b->lower) ? 1 : 0; 
 }
 
 void set_bit_8_bit(bit_8* b, uint8_t bit) {

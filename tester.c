@@ -13,7 +13,7 @@ void test_util_bin() {
 	struct bit_16 sample2_res = str_to_bit_16(sample2);
 	printf("%d_%d\n", sample2_res.upper, sample2_res.lower);
 	printf("%d\n", bit_8_to_decimal(sample1_res));
-	printf("%d\n", bit_16_to_decimal(sample2_res));
+	printf("%d\n", bit_16_to_decimal(&sample2_res));
 
 	string sample1_hex = bit_8_to_hex(sample1_res, 0);
 	printf(sample1_hex);
@@ -25,12 +25,12 @@ void test_util_bin() {
 	printf("\n");
 	free((void *) sample1_hex_mut);
 
-	string sample2_hex = bit_16_to_hex(sample2_res, 0);
+	string sample2_hex = bit_16_to_hex(&sample2_res, 0);
 	printf(sample2_hex);
 	printf("\n");
 	free((void *) sample2_hex);
 	char* sample2_hex_mut = malloc(7);
-	bit_16_to_hex(sample2_res, sample2_hex_mut);
+	bit_16_to_hex(&sample2_res, sample2_hex_mut);
 	printf(sample2_hex_mut);
 	printf("\n");
 	free((void *) sample2_hex_mut);
@@ -39,7 +39,10 @@ void test_util_bin() {
 
 void test_cpu() {
 	printf("reset %d\n", cpu_reset());
-	printf("%d\n", bit_16_to_decimal(cpu.regs.status));
+	printf("%d\n", bit_16_to_decimal(&cpu.regs.status));
+	printf("%d\n", bit_16_bit(&cpu.regs.status, 15));
+	printf("%d\n", bit_16_bit(&cpu.regs.status, 14));
+	exec();
 }
 
 int main() {

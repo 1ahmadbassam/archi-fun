@@ -20,10 +20,10 @@ extern bit_8 str_to_bit_8(string str);
 extern struct bit_16 str_to_bit_16(string str);
 
 /* 	convert an input bit_8 to decimal */
-extern int bit_8_to_decimal(bit_8 b);
+extern uint8_t bit_8_to_decimal(bit_8 b);
 
 /* 	convert an input bit_16 to decimal */
-extern int bit_16_to_decimal(struct bit_16 b);
+extern int bit_16_to_decimal(struct bit_16* b);
 
 /* 	convert an input bit_8 to hex, 
 	storing output into out if out is not null
@@ -37,7 +37,7 @@ extern string bit_8_to_hex(bit_8 b, char* out);
 	assumes that output is exactly 7 characters wide ("0xffff\0")
 	if out is null, then creates a new string (using malloc) and returns that
 	else returns out */
-extern string bit_16_to_hex(struct bit_16 b, char* out);
+extern string bit_16_to_hex(struct bit_16* b, char* out);
 
 /* TODO: 
 	
@@ -57,5 +57,11 @@ extern void set_bit_16_bit(struct bit_16* b, uint8_t bit);
 
 /*	clears a bit of a specified bit_8 */
 extern void clear_bit_16_bit(struct bit_16* b, uint8_t bit);
+
+/* 	get bit of a specified bit_8 */
+extern uint8_t bit_8_bit(bit_8 b, uint8_t bit);
+
+/* 	get bit of a specified bit_16 */
+extern uint8_t bit_16_bit(struct bit_16* b, uint8_t bit);
 
 #endif

@@ -4,7 +4,7 @@
 
 #include "constants.h"
 
-/* 	currently, the architechture consists of three 16-bit registers
+/* 	currently, the architechture consists of four 16-bit registers
 	a working register "working"
 	a status register "status"
 	and a general purpose register "general" */
@@ -26,5 +26,8 @@ extern struct cpu_mod cpu;
 
 /* on init, or on reset, reset processor state */
 extern int cpu_reset(void);
+
+/* perform computation until stop */
+extern int exec(void);
 
 #endif
